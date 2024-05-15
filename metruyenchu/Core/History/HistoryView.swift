@@ -11,28 +11,40 @@ struct HistoryView: View {
     @State private var selectedTabIndex = 0
     @State private var textWidths: [CGFloat] = [0,0]
     var body: some View {
-        VStack{
-            HStack{
-                Text("Tủ truyện")
-                    .font(.system(size: 26,weight: .medium))
-                Spacer()
-                Image(systemName: "gearshape.fill")
+        NavigationStack{
+            VStack{
+               
+                HistoryHeaderView(selectedTabIndex: $selectedTabIndex, textWidths: $textWidths)
+                    .padding(.top)
+                    .overlay(Divider(), alignment: .bottom)
+                
+                TabView(selection: $selectedTabIndex)
+                {
+                    HistoryPageView()
+                    
+                        .tag(0)
+                    Text("Đánh dấu").tabItem { Text("Tab Label 2") }.tag(1)
+                }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                
+                
             }
-            .padding()
-            HistoryHeaderView(selectedTabIndex: $selectedTabIndex, textWidths: $textWidths)
-                .overlay(Divider(), alignment: .bottom)
-            TabView(selection: $selectedTabIndex)
-            {
-                HistoryPageView().tag(0)
-                Text("Đánh dấu").tabItem { /*@START_MENU_TOKEN@*/Text("Tab Label 2")/*@END_MENU_TOKEN@*/ }.tag(1)
-            }
-            .tabViewStyle(.page(indexDisplayMode: .never))
-           
-            
+            .toolbar(content: {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("Tủ truyện")
+                        .font(.system(size: 26,weight: .medium))
+                        
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Image(systemName: "gearshape.fill")
+                }
+                
+            })
+            .background(Color.theme.backgroundColor)
+            .ignoresSafeArea(edges: .bottom)
         }
-        .background(Color.theme.backgroundColor)
-        .ignoresSafeArea(edges: .bottom)
-     
+       
        
     }
 }

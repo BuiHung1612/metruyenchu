@@ -10,12 +10,13 @@ import SwiftUI
 struct HistoryPageView: View {
     var body: some View {
         List(STORIES_DATA){ item in
-            HStack(alignment:.top,spacing:16){
+            
+            HStack(alignment:.center,spacing:16){
                 AsyncImage(url: URL(string: item.imageURL)) { Image in
                     Image.resizable()
                         .frame(width: 110,height: 150)
                         .clipShape(.rect(cornerRadius: 8))
-                        
+                    
                 } placeholder: {
                     VStack{
                         ProgressView()
@@ -43,13 +44,15 @@ struct HistoryPageView: View {
                     Spacer()
                 }
             }
-            
+            .overlay {
+                NavigationLink(destination: { StoryInfoView(storyInfo: item) },
+                               label: { EmptyView() })
+                .opacity(0)
+            }
             .listRowBackground(Color.clear)
         }
         .listStyle(.plain)
-        .padding(.top)
         .background(Color.theme.darkGraybackgroundColor)
-        
     }
 }
 
