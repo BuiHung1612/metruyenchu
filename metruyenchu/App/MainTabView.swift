@@ -35,7 +35,7 @@ struct MainTabView: View {
                         .environment(\.symbolVariants, .none)
                 }
                 .tag(3)
-        }
+        }.tint(Color.theme.primaryTextColor)
     }
 }
 

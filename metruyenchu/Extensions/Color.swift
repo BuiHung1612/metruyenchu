@@ -14,6 +14,7 @@ extension Color {
 
 struct ColorTheme{
     let backgroundColor = Color("BackgroundColor")
+    let darkGraybackgroundColor = Color("DarkGraybackgroundColor")
     let textGray = Color("TextGray")
     let textDarkGray = Color("TextDarkGray")
     
