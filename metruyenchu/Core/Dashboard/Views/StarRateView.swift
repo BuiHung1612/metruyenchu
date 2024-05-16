@@ -8,19 +8,32 @@
 import SwiftUI
 
 struct StarRateView: View {
+    let iconSize: CGFloat
+    let textSize: CGFloat
+    let textColor: Color
+    
+    init(iconSize: CGFloat = 18, textSize: CGFloat = 16, textColor: Color = Color.theme.textDarkGray) {
+        self.iconSize = iconSize
+        self.textSize = textSize
+        self.textColor = textColor
+    }
+    
     var body: some View {
-        HStack(spacing:12){
+        HStack(alignment: .top,spacing:12){
             HStack{
                 ForEach(0..<5){ _ in
                     Image(systemName: "star.fill")
                         .resizable()
-                        .frame(width: 18,height:18)
+                        .frame(width: iconSize,height:iconSize)
                         .foregroundStyle(.yellow)
                 }
             }
             Text("5.0")
-                .foregroundStyle(Color.theme.textDarkGray)
+                .foregroundStyle(textColor)
                 .lineLimit(1)
+                .font(.system(size: textSize))
+                
+            
         }
     }
 }

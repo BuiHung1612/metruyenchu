@@ -12,18 +12,8 @@ struct HistoryPageView: View {
         List(STORIES_DATA){ item in
             
             HStack(alignment:.center,spacing:16){
-                AsyncImage(url: URL(string: item.imageURL)) { Image in
-                    Image.resizable()
-                        .frame(width: 110,height: 150)
-                        .clipShape(.rect(cornerRadius: 8))
-                    
-                } placeholder: {
-                    VStack{
-                        ProgressView()
-                    }
-                    .frame(width: 110,height: 150)
-                    .clipShape(.rect(cornerRadius: 8))
-                }
+                RemoteImage(imageUrl: item.imageURL, width: 110,height: 150)
+                
                 
                 VStack(alignment:.leading,spacing: 12){
                     Text(item.storyName)

@@ -9,12 +9,11 @@ import SwiftUI
 
 struct HistoryView: View {
     @State private var selectedTabIndex = 0
-    @State private var textWidths: [CGFloat] = [0,0]
     var body: some View {
         NavigationStack{
             VStack{
                
-                HistoryHeaderView(selectedTabIndex: $selectedTabIndex, textWidths: $textWidths)
+                HistoryHeaderView(selectedTabIndex: $selectedTabIndex, tabViews: ["Lịch sử", "Đánh dấu"],indicatorFitText: true)
                     .padding(.top)
                     .overlay(Divider(), alignment: .bottom)
                 

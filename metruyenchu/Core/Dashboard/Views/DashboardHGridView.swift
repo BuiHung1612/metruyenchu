@@ -14,13 +14,9 @@ struct DashboardHGridView: View {
             LazyHGrid(rows: rows, content: {
                 ForEach(STORIES_DATA.prefix(6).indices, id:\.self){ index in
                     VStack(alignment:.leading){
-                        AsyncImage(url: URL(string: STORIES_DATA[index].imageURL))
-                        { image in
-                            image.resizable()
-                        } placeholder: {
-                            
-                        }
-                        .frame(width: (UIScreen.main.bounds.width - 48)/3,height: 160)
+                        RemoteImage(imageUrl: STORIES_DATA[index].imageURL, width: (UIScreen.main.bounds.width - 48)/3,height: 160)
+                       
+                        
                         .clipShape(.rect(cornerRadius:6))
                         Text(STORIES_DATA[index].storyName)
                             .frame(width: (UIScreen.main.bounds.width - 48)/3,alignment: .leading)

@@ -14,14 +14,8 @@ struct DashboardNewestView: View {
             ScrollView (.horizontal, showsIndicators: false){
                 HStack{
                     ForEach(STORIES_DATA.indices, id:\.self){ index in
-                        AsyncImage(url: URL(string: STORIES_DATA[index].imageURL))
-                        { image in
-                            image.resizable()
-                        } placeholder: {
-                            
-                        }
-                        .frame(width: 60,height: 70)
-                        .clipShape(.rect(cornerRadius:6))
+                        RemoteImage(imageUrl: STORIES_DATA[index].imageURL, width: 60, height: 70,borderRadius: 6)
+                        
                     }
                 }
                 
@@ -74,14 +68,9 @@ struct DashboardNewestView: View {
                     }
                 }
                 Spacer()
-                AsyncImage(url: URL(string: "https://static.cdnno.com/poster/than-thoai-ky-nguyen-ta-tien-hoa-thanh-hang-tinh-cap-cu-thu/300.jpg?1705212729"))
-                { image in
-                    image.resizable()
-                } placeholder: {
-                    
-                }
-                .frame(width: UIScreen.main.bounds.width*0.4,height: 200)
-                .clipShape(.rect(cornerRadius:10))
+                
+                RemoteImage(imageUrl: "https://static.cdnno.com/poster/than-thoai-ky-nguyen-ta-tien-hoa-thanh-hang-tinh-cap-cu-thu/300.jpg?1705212729", width: UIScreen.main.bounds.width*0.34,height: 200)
+               
             }
         }
         .padding(.horizontal)

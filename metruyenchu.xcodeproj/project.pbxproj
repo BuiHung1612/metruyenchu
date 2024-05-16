@@ -32,6 +32,7 @@
 		8873C1E92BF4C57E006D1494 /* HistoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873C1E82BF4C57E006D1494 /* HistoryPageView.swift */; };
 		888D8E672BF4FAF60019F7E4 /* StoryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D8E662BF4FAF60019F7E4 /* StoryInfoView.swift */; };
 		888D8E6A2BF5065C0019F7E4 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D8E692BF5065C0019F7E4 /* RemoteImage.swift */; };
+		88C101E82BF5B34F00CC431E /* StoryInfoViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C101E72BF5B34F00CC431E /* StoryInfoViewHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		8873C1E82BF4C57E006D1494 /* HistoryPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPageView.swift; sourceTree = "<group>"; };
 		888D8E662BF4FAF60019F7E4 /* StoryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryInfoView.swift; sourceTree = "<group>"; };
 		888D8E692BF5065C0019F7E4 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		88C101E72BF5B34F00CC431E /* StoryInfoViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryInfoViewHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				888D8E662BF4FAF60019F7E4 /* StoryInfoView.swift */,
+				88C101E72BF5B34F00CC431E /* StoryInfoViewHeader.swift */,
 			);
 			path = StoryInfo;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				888D8E672BF4FAF60019F7E4 /* StoryInfoView.swift in Sources */,
 				881A7E172BEDD81D006A1E04 /* StarRateView.swift in Sources */,
 				881A7E0D2BEDBDDC006A1E04 /* DashboardHeaderView.swift in Sources */,
+				88C101E82BF5B34F00CC431E /* StoryInfoViewHeader.swift in Sources */,
 				8873C1E72BF4B505006D1494 /* HistoryHeaderView.swift in Sources */,
 				881A7E192BEDDAB2006A1E04 /* Story.swift in Sources */,
 				881A7DEB2BEDB6D9006A1E04 /* metruyenchuApp.swift in Sources */,
