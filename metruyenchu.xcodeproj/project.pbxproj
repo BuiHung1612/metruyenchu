@@ -33,6 +33,11 @@
 		888D8E672BF4FAF60019F7E4 /* StoryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D8E662BF4FAF60019F7E4 /* StoryInfoView.swift */; };
 		888D8E6A2BF5065C0019F7E4 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888D8E692BF5065C0019F7E4 /* RemoteImage.swift */; };
 		88C101E82BF5B34F00CC431E /* StoryInfoViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C101E72BF5B34F00CC431E /* StoryInfoViewHeader.swift */; };
+		88C67E1D2BF748C300379A1A /* IntroduceTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C67E1C2BF748C300379A1A /* IntroduceTabView.swift */; };
+		88C67E1F2BF748DA00379A1A /* EvaluateTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C67E1E2BF748DA00379A1A /* EvaluateTabView.swift */; };
+		88C67E212BF748F000379A1A /* CommentTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C67E202BF748F000379A1A /* CommentTabView.swift */; };
+		88C67E232BF7491400379A1A /* ChapterListTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C67E222BF7491400379A1A /* ChapterListTabView.swift */; };
+		88C67E262BF7590D00379A1A /* GeometryReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C67E252BF7590D00379A1A /* GeometryReader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +68,11 @@
 		888D8E662BF4FAF60019F7E4 /* StoryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryInfoView.swift; sourceTree = "<group>"; };
 		888D8E692BF5065C0019F7E4 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		88C101E72BF5B34F00CC431E /* StoryInfoViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryInfoViewHeader.swift; sourceTree = "<group>"; };
+		88C67E1C2BF748C300379A1A /* IntroduceTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroduceTabView.swift; sourceTree = "<group>"; };
+		88C67E1E2BF748DA00379A1A /* EvaluateTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateTabView.swift; sourceTree = "<group>"; };
+		88C67E202BF748F000379A1A /* CommentTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTabView.swift; sourceTree = "<group>"; };
+		88C67E222BF7491400379A1A /* ChapterListTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterListTabView.swift; sourceTree = "<group>"; };
+		88C67E252BF7590D00379A1A /* GeometryReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryReader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,7 @@
 		881A7DE92BEDB6D9006A1E04 /* metruyenchu */ = {
 			isa = PBXGroup;
 			children = (
+				88C67E242BF758E800379A1A /* Common */,
 				881A7E072BEDBC34006A1E04 /* Extensions */,
 				881A7DF92BEDB72E006A1E04 /* App */,
 				881A7DF82BEDB726006A1E04 /* Core */,
@@ -225,7 +236,11 @@
 			isa = PBXGroup;
 			children = (
 				888D8E662BF4FAF60019F7E4 /* StoryInfoView.swift */,
+				88C67E1E2BF748DA00379A1A /* EvaluateTabView.swift */,
 				88C101E72BF5B34F00CC431E /* StoryInfoViewHeader.swift */,
+				88C67E1C2BF748C300379A1A /* IntroduceTabView.swift */,
+				88C67E202BF748F000379A1A /* CommentTabView.swift */,
+				88C67E222BF7491400379A1A /* ChapterListTabView.swift */,
 			);
 			path = StoryInfo;
 			sourceTree = "<group>";
@@ -243,6 +258,14 @@
 				888D8E692BF5065C0019F7E4 /* RemoteImage.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		88C67E242BF758E800379A1A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				88C67E252BF7590D00379A1A /* GeometryReader.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,19 +339,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				881A7E132BEDCE5B006A1E04 /* DashboardTitleRow.swift in Sources */,
+				88C67E1D2BF748C300379A1A /* IntroduceTabView.swift in Sources */,
 				881A7E062BEDB7C6006A1E04 /* ProfileScreen.swift in Sources */,
 				881A7E092BEDBC53006A1E04 /* Image.swift in Sources */,
 				881A7E022BEDB7AD006A1E04 /* DashboardView.swift in Sources */,
 				8822932B2BF110E800E278CD /* DashboardHGridView.swift in Sources */,
 				88649E6E2BF2594200FD7B0E /* MainTabView.swift in Sources */,
 				881A7E002BEDB7A1006A1E04 /* HistoryView.swift in Sources */,
+				88C67E232BF7491400379A1A /* ChapterListTabView.swift in Sources */,
 				882293332BF1180F00E278CD /* Gender.swift in Sources */,
 				8822932F2BF1160A00E278CD /* GenderRowView.swift in Sources */,
 				881A7E152BEDD7E9006A1E04 /* DashboardNewestView.swift in Sources */,
 				888D8E672BF4FAF60019F7E4 /* StoryInfoView.swift in Sources */,
 				881A7E172BEDD81D006A1E04 /* StarRateView.swift in Sources */,
+				88C67E262BF7590D00379A1A /* GeometryReader.swift in Sources */,
 				881A7E0D2BEDBDDC006A1E04 /* DashboardHeaderView.swift in Sources */,
 				88C101E82BF5B34F00CC431E /* StoryInfoViewHeader.swift in Sources */,
+				88C67E212BF748F000379A1A /* CommentTabView.swift in Sources */,
 				8873C1E72BF4B505006D1494 /* HistoryHeaderView.swift in Sources */,
 				881A7E192BEDDAB2006A1E04 /* Story.swift in Sources */,
 				881A7DEB2BEDB6D9006A1E04 /* metruyenchuApp.swift in Sources */,
@@ -337,6 +364,7 @@
 				8822932D2BF115E900E278CD /* DashboardGenderSheetView.swift in Sources */,
 				881A7E0F2BEDBE10006A1E04 /* DashboardCarouselView.swift in Sources */,
 				888D8E6A2BF5065C0019F7E4 /* RemoteImage.swift in Sources */,
+				88C67E1F2BF748DA00379A1A /* EvaluateTabView.swift in Sources */,
 				8873C1E92BF4C57E006D1494 /* HistoryPageView.swift in Sources */,
 				881A7E112BEDCB15006A1E04 /* Color.swift in Sources */,
 			);

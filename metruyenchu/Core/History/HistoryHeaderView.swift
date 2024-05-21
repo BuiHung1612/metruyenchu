@@ -47,7 +47,7 @@ struct HistoryHeaderView: View {
                                     .background(ViewGeometry())
                                     .onPreferenceChange(ViewSizeKey.self) {
                                         
-                                        textWidths[index] = $0
+                                        textWidths[index] = $0.width
                                     }
                             })
                             .padding(.bottom,10)
@@ -71,7 +71,7 @@ struct HistoryHeaderView: View {
                             .background(ViewGeometry())
                             .onPreferenceChange(ViewSizeKey.self) {
                                 
-                                textWidths[index] = $0
+                                textWidths[index] = $0.width
                             }
                         }
                         

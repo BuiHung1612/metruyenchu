@@ -7,56 +7,50 @@
 
 import SwiftUI
 
+
 struct StoryInfoView: View {
     let storyInfo: Story
     @State private var selectedTabIndex = 0
-    
+    @State private var minHeight: CGFloat = 100
+    @State private var offset: CGFloat = 0
+    @State private var imageOffset: CGFloat = 0
     var body: some View {
         NavigationStack{
-            VStack{
-                StoryInfoViewHeader(storyInfo: storyInfo)
-                VStack{
-                    HistoryHeaderView(selectedTabIndex: $selectedTabIndex, tabViews: ["Giới thiệu", "Đánh giá", "Bình Luận", "D.S Chương"],indicatorFitText: false)
-                       
-                       
-                    
-                    TabView(selection: $selectedTabIndex){
-                 
-                        Text("Tab Content 1").tabItem { Text("Tab Label 1") }.tag(0)
-                        Text("Tab Content 2").tabItem { Text("Tab Label 2") }.tag(1)
-                        Text("Tab Content 1").tabItem { Text("Tab Label 1") }.tag(2)
-                        Text("Tab Content 2").tabItem { Text("Tab Label 2") }.tag(3)
-                    }.tabViewStyle(.page(indexDisplayMode: .never))
-                        .background(.gray)
-                    
+            
+            GeometryReader{ proxy in
+                ScrollView{
+                    VStack{
+                        StoryInfoViewHeader(storyInfo: storyInfo, offset: $offset)
+                        HistoryHeaderView(selectedTabIndex: $selectedTabIndex, tabViews: ["Giới thiệu", "Đánh giá", "Bình Luận", "D.S Chương"],indicatorFitText: false)
+                        TabViewContainer(selectedTabIndex: $selectedTabIndex,storyInfo: storyInfo)
+                            .tabViewStyle(.page(indexDisplayMode: .never))
+                            .frame(minHeight: proxy.size.height*1.5)
+                    }
+                    .background(Color.theme.backgroundColor)
+                    .background(GeometryReader { proxy -> Color in
+                        DispatchQueue.main.async {
+                            offset = proxy.frame(in: .named("scroll")).origin.y
+                        }
+                        return Color.clear
+                    })
                 }
+                .coordinateSpace(name: "scroll")
                 
             }
-            
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: BackBtnView())
-            .toolbar(.hidden, for: .tabBar)
-            
             .ignoresSafeArea()
             
         }
+        
+        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
+        
         
     }
 }
 
 #Preview {
-    StoryInfoView(storyInfo: .init(storyName: "Ta có một thế giới Tu Tiên",
-                                   description: "Ta lặp đi lặp lại cường điệu, Tu Tiên giới tập tục vốn chính là lệch ra, không phải ta mang lệch ra, đều nói sách sử là người thắng viết, vậy tại sao ta chiến thắng còn luôn luôn có người vu hãm ta? Lục Dương Kiếm Tiên đối mặt phóng viên phỏng vấn nói như thế, biểu thị phi thường phẫn nộ. Ngày thứ hai.Ta lặp đi lặp lại cường điệu, Tu Tiên giới tập tục là ta mang lệch ra. Lục Dương Kiếm Tiên đối mặt phóng viên phỏng vấn lúc nói như thế, biểu thị phi thường phẫn nộ. —— « tu tiên nhật báo » là ngài đưa tin.",
-                                   rate: 4.5,
-                                   type: ["Tiên hiệp", "Vô sỉ", "Cổ điển tiên hiệp"],
-                                   author: "Tối Bạch Đích Ô Nha",
-                                   totalChapters: 1143,
-                                   readCount: 2216941,
-                                   nominationCount: 8623,
-                                   imageURL: "https://static.cdnno.com/poster/ta-co-mot-the-gioi-tu-tien/300.jpg?1661651944"
-                                  ))
+    StoryInfoView(storyInfo: STORIES_DATA[2])
 }
-
 
 
 struct BackBtnView: View {
@@ -66,7 +60,49 @@ struct BackBtnView: View {
             dismiss()
         }, label: {
             Image(systemName: "chevron.left")
+                .resizable()
                 .foregroundStyle(.white)
+                .scaledToFit()
+                .frame(width: 18,height:18)
         })
     }
 }
+
+
+
+struct ViewOffsetKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
+
+
+struct TabViewContainer: View {
+    @Binding var selectedTabIndex: Int
+    let storyInfo: Story
+    
+    
+    var body: some View {
+        
+        TabView(selection: $selectedTabIndex) {
+            
+            IntroduceTabView(storyInfo: storyInfo)
+                .tag(0)
+            
+            EvaluateTabView()
+                .tag(1)
+            CommentTabView()
+                .tag(2)
+            ChapterListTabView()
+                .tag(3)
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .background(Color.theme.backgroundColor)
+        
+        
+    }
+}
+
+

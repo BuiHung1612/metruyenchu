@@ -27,7 +27,7 @@ struct RemoteImage: View {
             Image.resizable()
                 .frame(width: width,height: height)
                 .clipShape(.rect(cornerRadius: borderRadius))
-                .blur(radius: blurRadius)
+                .blur(radius: blurRadius, opaque: true)
                 .scaledToFill()
             
         } placeholder: {

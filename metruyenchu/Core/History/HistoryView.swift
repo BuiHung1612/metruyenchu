@@ -53,22 +53,7 @@ struct HistoryView: View {
 }
 
 
-struct ViewSizeKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-    
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
-    }
-}
 
-struct ViewGeometry: View {
-    var body: some View {
-        GeometryReader { geometry in
-            Color.clear
-                .preference(key: ViewSizeKey.self, value: geometry.size.width)
-        }
-    }
-}
 
 
 
