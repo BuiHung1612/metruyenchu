@@ -7,23 +7,16 @@
 
 import SwiftUI
 
-let HEADER_MAX_HEIGHT = UIScreen.main.bounds.height*0.34
+let HEADER_MAX_HEIGHT = UIScreen.main.bounds.height*0.32
 
 struct StoryInfoViewHeader: View {
     @State private var expandableContent: Bool = true
     let storyInfo: Story
     @State private var headerHeight = HEADER_MAX_HEIGHT
-    @Binding var offset: CGFloat {
-        didSet {
-            if (self.expandableContent){
-                headerHeight = HEADER_MAX_HEIGHT +  self.offset
-            }
-            
-        }
-    }
+    @Binding var offset: CGFloat
     var body: some View {
         ZStack(alignment:.topLeading){
-            RemoteImage(imageUrl: storyInfo.imageURL,width: UIScreen.main.bounds.width, height: (HEADER_MAX_HEIGHT+offset) > 0 ? headerHeight: 0  ,blurRadius: 30)
+            RemoteImage(imageUrl: storyInfo.imageURL,width: UIScreen.main.bounds.width, height: headerHeight  ,blurRadius: 30)
           
                 
             
@@ -53,17 +46,20 @@ struct StoryInfoViewHeader: View {
                         StarRateView(iconSize: 14,textSize: 14, textColor: .white)
                      Spacer()
                         HStack{
-                            Button(action: {
-                                //TODO READ STORY
-                            }, label: {
-                                Text("Đọc truyện")
-                                    .font(.system(size: 12,weight: .medium))
-                                    .padding(.vertical,6)
-                                    .padding(.horizontal,14)
-                                    .background(Color.theme.darkBlueColor)
-                                    .foregroundStyle(.white)
-                                    .clipShape(.rect(cornerRadius: 20))
+                            Button(action: {}, label: {
+                                NavigationLink {
+                                    StoryDetailView(storyInfo: storyInfo)
+                                } label: {
+                                    Text("Đọc truyện")
+                                        .font(.system(size: 12,weight: .medium))
+                                        .padding(.vertical,6)
+                                        .padding(.horizontal,14)
+                                        .background(Color.theme.darkBlueColor)
+                                        .foregroundStyle(.white)
+                                        .clipShape(.rect(cornerRadius: 20))
+                                }
                             })
+                           
                             HStack(spacing:8){
                                 Button {
                                     //TODO ADD STORY
@@ -98,29 +94,24 @@ struct StoryInfoViewHeader: View {
         }
         .onChange(of: offset, { oldValue, newValue in
             let value = normalizeValue(a: offset*1.4, b: HEADER_MAX_HEIGHT)
+            
             if (value == 0.6){
                 expandableContent = false
             }
             else if(!expandableContent){
                 expandableContent = true
-                
+                headerHeight = (HEADER_MAX_HEIGHT+offset) > 0 ? HEADER_MAX_HEIGHT + offset : 0
+            }
+            else {
+                headerHeight = (HEADER_MAX_HEIGHT+offset) > 0 ? HEADER_MAX_HEIGHT + offset : 0
             }
         })
-        .frame(width: UIScreen.main.bounds.width,height: (HEADER_MAX_HEIGHT + offset/2) > 0 ? (HEADER_MAX_HEIGHT + offset/2) : 0 ,alignment: .top)
+        .frame(width: UIScreen.main.bounds.width,height: headerHeight,alignment: .top)
     }
 }
 
 #Preview {
-    StoryInfoViewHeader(storyInfo: .init(storyName: "Toàn Dân Tu Tiên: Nơi Này Tu Tiên Quá Cao Cấp",
-                                         description: "Ta lặp đi lặp lại cường điệu, Tu Tiên giới tập tục vốn chính là lệch ra, không phải ta mang lệch ra, đều nói sách sử là người thắng viết, vậy tại sao ta chiến thắng còn luôn luôn có người vu hãm ta? Lục Dương Kiếm Tiên đối mặt phóng viên phỏng vấn nói như thế, biểu thị phi thường phẫn nộ. Ngày thứ hai.Ta lặp đi lặp lại cường điệu, Tu Tiên giới tập tục là ta mang lệch ra. Lục Dương Kiếm Tiên đối mặt phóng viên phỏng vấn lúc nói như thế, biểu thị phi thường phẫn nộ. —— « tu tiên nhật báo » là ngài đưa tin. Truyện dành cho ae nào quá chán mì ăn liền, ngựa giống, hệ thống,….Nhẩy hố đi đừng quan tâm mấy cái cmt vớ vẩn, tác người mới nhưng viết rất tâm huyết, khá chắc tay. Triển khai 2 thế giới hợp lý (TG main ở hiện đại, tu tiên toàn dân, dễ tra cứu trên mạng những kiến thức phổ cập, nói đến phổ cập thì TG của main nó phổ cập tu tiên như giáo dục bắt buộc vậy, người người tu tiên, hệ thống giáo dục rõ ràng nên ví dụ như TG tu tiên truyền thống ông chế đc 1 loại đan dược hoặc bùa cấp 3 là thành luyện Đan, chế phù sư tâm giải, nhưng TG của main phải tinh thông 10 loại trở lên và phải thi cử mới được cấp giấy phép cấp 3. Đấy nói 1 ví dụ thế cho ae hiểu sự chênh lệch, nhưng TG này tài nguyên thiếu thốn, yêu thú, yêu thực cấp cao thành quốc bảo, phải xin phép mới được lấy tài liệu để luyện Đan chế khí (máu, da lông hay cành lá linh thực)",
-                                         rate: 4.5,
-                                         type: ["Tiên hiệp", "Vô sỉ", "Cổ điển tiên hiệp"],
-                                         author: "Tối Bạch Đích Ô Nha",
-                                         totalChapters: 1143,
-                                         readCount: 2216941,
-                                         nominationCount: 8623,
-                                         imageURL: "https://static.cdnno.com/poster/toan-dan-tu-tien-noi-nay-tu-tien-qua-cao-cap/300.jpg?1714828514"
-                                        ), offset: .constant(0))
+    StoryInfoViewHeader(storyInfo: STORIES_DATA[3], offset: .constant(0))
     
 }
 

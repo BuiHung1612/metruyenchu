@@ -16,6 +16,7 @@ struct HistoryHeaderView: View {
     let HSPACING: CGFloat = 30
     let indicatorFitText: Bool
     let paddingHorizontal: CGFloat
+    @State private var showIndicator = false
     @State private var offsetX: CGFloat = 0
     
     init(selectedTabIndex: Binding<Int>, tabViews: [String], fontSize: CGFloat = 16, indicatorFitText: Bool,paddingHorizontal: CGFloat = 16) {
@@ -76,34 +77,43 @@ struct HistoryHeaderView: View {
                         }
                         
                     }
-                    
-                    
                     indicatorFitText ?  Spacer() : nil
                     
                 }
-             
+                
                 .onChange(of: selectedTabIndex) { oldValue, newValue in
                     
                     let widths = textWidths.prefix(newValue)
                     let x = widths.reduce(0, +)
-                    print(textWidths,widths,x)
                     withAnimation(.spring){
                         offsetX = x == 0 ? 0 : x + (CGFloat(widths.count) * HSPACING)
                     }
                     
                 }
                 
-                Rectangle()
-                    .fill(Color.theme.textDarkGray)
-                    .frame(width: textWidths[selectedTabIndex], height: 4)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .offset(x: offsetX )
-                    .animation(.easeInOut(duration: 0.1), value: selectedTabIndex)
-                    .animation(.spring, value: textWidths[selectedTabIndex])
+                if showIndicator {
+                    Rectangle()
+                        .fill(Color.theme.textDarkGray)
+                        .frame(width: textWidths[selectedTabIndex], height: 4)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .offset(x: offsetX)
+                    
+                }
             }
             .padding(.horizontal, indicatorFitText ? 16 : 0)
             
         }
+        .onAppear {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                withAnimation(.easeIn(duration: 0.3)){
+                    showIndicator = true
+                }
+            }
+            
+        }
+        
+        
         
     }
 }

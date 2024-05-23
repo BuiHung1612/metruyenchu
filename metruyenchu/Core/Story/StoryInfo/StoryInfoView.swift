@@ -24,7 +24,7 @@ struct StoryInfoView: View {
                         HistoryHeaderView(selectedTabIndex: $selectedTabIndex, tabViews: ["Giới thiệu", "Đánh giá", "Bình Luận", "D.S Chương"],indicatorFitText: false)
                         TabViewContainer(selectedTabIndex: $selectedTabIndex,storyInfo: storyInfo)
                             .tabViewStyle(.page(indexDisplayMode: .never))
-                            .frame(minHeight: proxy.size.height*1.5)
+                            .frame(minHeight: proxy.size.height)
                     }
                     .background(Color.theme.backgroundColor)
                     .background(GeometryReader { proxy -> Color in
@@ -43,13 +43,11 @@ struct StoryInfoView: View {
         
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .tabBar)
-        
-        
     }
 }
 
 #Preview {
-    StoryInfoView(storyInfo: STORIES_DATA[2])
+    StoryInfoView(storyInfo: STORIES_DATA[0])
 }
 
 

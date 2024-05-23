@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct metruyenchuApp: App {
+    @StateObject var StoryDetailViewModel = StoryDetailViewViewModel()
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .environmentObject(StoryDetailViewModel)
         }
     }
 }
